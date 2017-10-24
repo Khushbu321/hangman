@@ -1,0 +1,205 @@
+<html>
+<title>
+</title>
+<style type="text/css">
+.tb
+  {
+      
+      height: 30px;
+      width: 30px;
+      
+  }
+  .td
+  {
+      border: 1px solid black;
+      height: 30px;
+      width: 30px;
+      border-right:none; 
+      border-top:none;
+      border-left:none;
+  }
+</style>
+<body id="body">
+<center>
+<div id="main">
+<center>
+<canvas  id="myCanvas" width="500" height="400" style="border:1px solid #000000;">
+</canvas></center>
+<br/>
+
+<br/>
+<table border="0" width="20%" height="8%">
+<tr>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop1"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop2"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop3"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop4"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop5"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop6"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop7"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop8"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop9"></td>
+<td class="td"  ondrop="drop(event)" ondragover="allowDrop(event)" id="drop10"></td>
+</tr>
+</table>
+<br/>
+<table border="1" id="dragTable">
+<tr class="tb" style="border-top: none;">
+<td class="tb"   draggable="true" id="drag1" ondragstart="drag(event,this)">A</td>
+<td class="tb"   draggable="true" id="drag2" ondragstart="drag(event,this)">B</td>
+<td class="tb"   draggable="true" id="drag3" ondragstart="drag(event,this)">C</td>
+<td class="tb"   draggable="true" id="drag4" ondragstart="drag(event,this)">D</td>
+<td class="tb"   draggable="true" id="drag5" ondragstart="drag(event,this)">E</td>
+<td class="tb"   draggable="true" id="drag6" ondragstart="drag(event,this)">F</td>
+<td class="tb"   draggable="true" id="drag7" ondragstart="drag(event,this)">G</td>
+<td class="tb"   draggable="true" id="drag8" ondragstart="drag(event,this)">H</td>
+<td class="tb"   draggable="true" id="drag9" ondragstart="drag(event,this)">I</td>
+<td class="tb"   draggable="true" id="drag10" ondragstart="drag(event,this)">J</td>
+<td class="tb"   draggable="true" id="drag11" ondragstart="drag(event,this)">K</td>
+<td class="tb"   draggable="true" id="drag12" ondragstart="drag(event,this)">L</td>
+<td class="tb"   draggable="true" id="drag13" ondragstart="drag(event,this)">M</td>
+<td class="tb"   draggable="true" id="drag14" ondragstart="drag(event,this)">N</td>
+<td class="tb"   draggable="true" id="drag15" ondragstart="drag(event,this)">O</td>
+<td class="tb"   draggable="true" id="drag16" ondragstart="drag(event,this)">P</td>
+<td class="tb"   draggable="true" id="drag17" ondragstart="drag(event,this)">Q</td>
+<td class="tb"   draggable="true" id="drag18" ondragstart="drag(event,this)">R</td>
+<td class="tb"   draggable="true" id="drag19" ondragstart="drag(event,this)">S</td>
+<td class="tb"   draggable="true" id="drag20" ondragstart="drag(event,this)">T</td>
+<td class="tb"   draggable="true" id="drag21" ondragstart="drag(event,this)">U</td>
+<td class="tb"   draggable="true" id="drag22" ondragstart="drag(event,this)">V</td>
+<td class="tb"   draggable="true" id="drag23" ondragstart="drag(event,this)">X</td>
+<td class="tb"   draggable="true" id="drag24" ondragstart="drag(event,this)">Y</td>
+<td class="tb"   draggable="true" id="drag25" ondragstart="drag(event,this)">Z</td>
+</tr>
+</table>
+<br/>
+<input type="text" name="word"  id= "correctWord">
+<input type="button" name="Display" value="Display" id="displayWord">
+<input type="button" name="Display" value="Show" id="showWord">
+<input type="button" name="Display" value="EndGame" onclick="endGame()">
+</div>
+</center>
+</body>
+
+<script type="text/javascript">
+//something wild
+var draggedObject;
+var words = ["word","admire","moon","stars","sky","kind","particular","head","sleep","passion","success","honour","journey","happy","love","health","friends"];
+    var fword = [];
+    var word = words[Math.floor(Math.random()* words.length)];
+    var counter = 0;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+document.getElementById("displayWord").addEventListener("click",function(){
+ document.getElementById("correctWord").value = word;
+});
+
+document.getElementById("showWord").addEventListener("click",function(){
+ if(document.getElementById("correctWord").style.display === "none")
+{
+ document.getElementById("correctWord").style.display = "block";
+}
+else
+{
+ document.getElementById("correctWord").style.display = "none"; 
+}
+});
+ var e = 0;
+function drop(ev){
+for(i = counter ; i<word.length ;i++){
+  debugger;
+       if(draggedObject.innerHTML == word[i].toUpperCase())
+       {
+              ev.preventDefault();
+              var data = ev.dataTransfer.getData("text");
+              ev.target.append(document.getElementById(data));
+              debugger;
+              document.getElementById("dragTable").innerHTML += draggedObject;
+           ++counter;
+           break;
+       }
+       else
+       {
+        if(e === 0){
+          ctx.moveTo(100,400);
+         ctx.lineTo(100,50);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 1){
+         ctx.moveTo(100,50);
+         ctx.lineTo(250,50);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 2){
+         ctx.moveTo(250,50);
+         ctx.lineTo(250,100);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 3){
+         ctx.beginPath();
+         ctx.arc(250,150,50,0,2*Math.PI);
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 4){
+         ctx.moveTo(250,200);
+         ctx.lineTo(250,330);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 5){
+         ctx.moveTo(250,200);
+         ctx.lineTo(300,250);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 6){
+         ctx.moveTo(250,200);
+         ctx.lineTo(200,250);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 5){
+         ctx.moveTo(250,330);
+         ctx.lineTo(300,400);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+         else if(e=== 6){
+         ctx.moveTo(250,330);
+         ctx.lineTo(200,400);  
+         ctx.stroke();
+         e++;
+           break;
+         }
+       }
+     } 
+}
+function drag(ev,x){
+ev.dataTransfer.setData("text", ev.target.id);
+draggedObject = x;
+}
+
+function allowDrop(ev) {  
+    ev.preventDefault();
+}
+
+function endGame(){
+      document.location = document.location;
+}
+
+</script>
+</html>
